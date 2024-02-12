@@ -1,0 +1,32 @@
+ === >> GROWTH
+* My Professional Portflio Page
+* Client display micro-frontend page 
+* dashboard of investments 
+   - Clone the last Investment log entry
+* daily expense module with graphs and filters
+* crypto transaction-wise record for usdt and pkr
+* yearly wise investment calculator 
+* plan your monthly financial plan/budge
+* Asset Classes/Ideas (cloud kitchen, fast food restaurant etc) (with yes/no field)
+* personal property bought/rentals manager
+* birthday reminder whatsapp utility
+* Error Monitoring Console with logs for Backend and Frontend
+* Real time data update in local storage to store entered data 
+* Intro via highlighting various parts of UI when application starts.
+
+
+Investment_fund_logs
+Id
+asset_class
+investment_amount
+transaction_perform_date
+asset_image_url
+status (Pending, Completed, Failed, Cancelled, On Hold, Refunded)
+currency
+description
+location
+AssetClasses -*
+
+EDIT
+
+

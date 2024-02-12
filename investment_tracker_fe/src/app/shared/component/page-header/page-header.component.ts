@@ -1,0 +1,31 @@
+import {Component, Input} from '@angular/core';
+import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-page-header',
+  templateUrl: './page-header.component.html',
+  styleUrls: ['./page-header.component.sass']
+})
+export class PageHeaderComponent {
+
+ 
+  faStar = faStar;
+  faPlus = faPlus;
+
+  @Input() heading;
+  @Input() subheading;
+  @Input() icon;
+  @Input() modaltype;
+
+  constructor(private modalService: NgbModal) {
+    console.log(this.modaltype);
+  }
+
+  openDialog() {
+    this.modalService.open(this.modaltype, {
+      size: 'lg'
+    });
+  }
+
+}
