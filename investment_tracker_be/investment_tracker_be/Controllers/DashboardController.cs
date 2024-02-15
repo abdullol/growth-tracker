@@ -47,7 +47,7 @@ namespace investment_tracker_be.Controllers
             {
                 resp.StatusCode = (int)HttpStatusCode.InternalServerError;
                 resp.Message = $"Error fetch log entry: {ex.Message}";
-                _logger.LogError("Error fetching entry", ex);
+                _logger.LogError(ex, "Error fetching entry");
                 return Ok(resp);
             }
         }
