@@ -16,8 +16,8 @@ namespace investment_tracker_be.Models
         {
         }
 
-        public virtual DbSet<InvestmentFundLog> InvestmentFundLogs { get; set; } = null!;
-        public virtual DbSet<TrackerLookup> TrackerLookups { get; set; } = null!;
+        public virtual DbSet<InvestmentFundLog> InvestmentFundLogs { get; set; }
+        public virtual DbSet<TrackerLookup> TrackerLookups { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

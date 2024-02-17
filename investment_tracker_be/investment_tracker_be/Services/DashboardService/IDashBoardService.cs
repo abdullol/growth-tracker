@@ -7,6 +7,7 @@ namespace investment_tracker_be.Services.DashboardService
     public interface IDashBoardService
     {
         Task LogEntryAsync(InvestmentFundLogsVM fundLog);
-        List<InvestmentFundLog> FetchLogEntryAsync();
+        Task<List<InvestmentFundLog>> FetchLogEntryAsync();
+        Task DeleteLogEntryRow(int id);
     }
 }
