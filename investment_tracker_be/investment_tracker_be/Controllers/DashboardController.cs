@@ -30,13 +30,13 @@ namespace investment_tracker_be.Controllers
 
         [HttpGet]
         [Route("GetLogEntry")]
-        public ActionResult GetLogEntry()
+        public async Task<ActionResult> GetLogEntry()
         {
             ResponseViewModel<object> resp = new ResponseViewModel<object>();
 
             try
             {
-                resp.Data = _dashbService.FetchLogEntryAsync();
+                resp.Data = await _dashbService.FetchLogEntryAsync();
                 resp.StatusCode = (int)HttpStatusCode.OK;
                 resp.Message = "Log Entry Lst fetched";
 
@@ -47,8 +47,28 @@ namespace investment_tracker_be.Controllers
             {
                 resp.StatusCode = (int)HttpStatusCode.InternalServerError;
                 resp.Message = $"Error fetch log entry: {ex.Message}";
-                _logger.LogError(ex, "Error fetching entry");
+                _logger.LogError(ex, "Error fetching entry.");
                 return Ok(resp);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteLogEntry")]
+        public async void DeleteLogEntry(int Id)
+        {
+            ResponseViewModel<object> resp = new ResponseViewModel<object>();
+            try
+            {
+                await _dashbService.DeleteLogEntryRow(Id);
+                resp.StatusCode = (int)HttpStatusCode.OK;
+                resp.Message = "Log Entry Row has been deleted successfully.";
+                _logger.LogInformation("Log Entry Row has been deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                resp.StatusCode=(int)HttpStatusCode.InternalServerError;
+                resp.Message = "Error while deleting Log Entry row.";
+                _logger.LogError(ex, "Error while deleting Log Entry row.");
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using investment_tracker_be.Models;
 using investment_tracker_be.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.Entity;
 
 namespace investment_tracker_be.Services.DashboardService
 {
@@ -12,18 +13,51 @@ namespace investment_tracker_be.Services.DashboardService
             dbContext = _dbContext;
         }
 
-        public List<InvestmentFundLog> FetchLogEntryAsync()
+        public async Task DeleteLogEntryRow(int id)
         {
-            return dbContext.InvestmentFundLogs.ToList();
+            try
+            {
+                var logFound = await dbContext.InvestmentFundLogs.FindAsync(id);
+
+                if (logFound != null)
+                {
+                    dbContext.InvestmentFundLogs.Remove(logFound);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<InvestmentFundLog>> FetchLogEntryAsync()
+        {
+            try
+            {
+                return await dbContext.InvestmentFundLogs.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task LogEntryAsync(InvestmentFundLogsVM fundLog)
         {
-            InvestmentFundLog dbLogObj = new InvestmentFundLog();
-            dbLogObj.StatusId = fundLog.StatusId;
-            dbLogObj.CurrencyId = fundLog.CurrencyId;
-            await dbContext.InvestmentFundLogs.AddAsync(dbLogObj);
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                InvestmentFundLog dbLogObj = new InvestmentFundLog();
+                dbLogObj.StatusId = fundLog.StatusId;
+                dbLogObj.CurrencyId = fundLog.CurrencyId;
+                await dbContext.InvestmentFundLogs.AddAsync(dbLogObj);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
+
     }
 }
