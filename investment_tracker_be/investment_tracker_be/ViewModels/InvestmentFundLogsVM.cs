@@ -3,7 +3,8 @@
 namespace investment_tracker_be.ViewModels
 {
     public class InvestmentFundLogsVM
-    {   
+    {
+        public int Id { get; set; }
         public string AssetsClass { get; set; }
         public decimal InvestmentAmount { get; set; }
         public DateTime TransactionPerformDate { get; set; }
