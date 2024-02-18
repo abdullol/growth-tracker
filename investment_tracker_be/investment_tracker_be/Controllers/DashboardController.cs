@@ -23,9 +23,10 @@ namespace investment_tracker_be.Controllers
 
         [HttpPost]
         [Route("PostLogEntry")]
-        public async void PostLogEntry([FromBody] InvestmentFundLogsVM fundLog)
+        public async Task<ActionResult> PostLogEntry([FromBody] InvestmentFundLogsVM fundLog)
         {
             await _dashbService.LogEntryAsync(fundLog);
+            return Ok();
         }
 
         [HttpGet]
@@ -66,10 +67,31 @@ namespace investment_tracker_be.Controllers
             }
             catch (Exception ex)
             {
-                resp.StatusCode=(int)HttpStatusCode.InternalServerError;
+                resp.StatusCode = (int)HttpStatusCode.InternalServerError;
                 resp.Message = "Error while deleting Log Entry row.";
                 _logger.LogError(ex, "Error while deleting Log Entry row.");
             }
+        }
+
+        [HttpPut]
+        [Route("UpdateLogEntry")]
+        public async void UpdateLogEntry([FromBody] InvestmentFundLogsVM fundLog)
+        {
+            ResponseViewModel<object> resp = new ResponseViewModel<object>();
+            try
+            {
+                await _dashbService.UpdateLogEntry(fundLog);
+                resp.StatusCode = (int)HttpStatusCode.OK;
+                resp.Message = "Log Entry Row has been updated successfully.";
+                _logger.LogInformation("Log Entry Row has been updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                resp.StatusCode = (int)HttpStatusCode.InternalServerError;
+                resp.Message = "Error while updating Log Entry row.";
+                _logger.LogError(ex, "Error while updating Log Entry row.");
+            }
+
         }
     }
 }

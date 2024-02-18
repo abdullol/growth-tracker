@@ -9,5 +9,6 @@ namespace investment_tracker_be.Services.DashboardService
         Task LogEntryAsync(InvestmentFundLogsVM fundLog);
         Task<List<InvestmentFundLog>> FetchLogEntryAsync();
         Task DeleteLogEntryRow(int id);
+        Task UpdateLogEntry(InvestmentFundLogsVM fundLog);
     }
 }

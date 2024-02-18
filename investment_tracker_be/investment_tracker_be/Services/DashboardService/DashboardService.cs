@@ -59,5 +59,34 @@ namespace investment_tracker_be.Services.DashboardService
             }
         }
 
+        public async Task UpdateLogEntry(InvestmentFundLogsVM fundLog)
+        {
+            try
+            {
+                var logFund =await dbContext.InvestmentFundLogs.FindAsync(fundLog.Id);
+                if (logFund == null)
+                {
+                    
+                }
+
+                logFund.CurrencyId = fundLog.CurrencyId;
+                logFund.StatusId = fundLog.StatusId;
+                logFund.Location = fundLog.Location;
+                logFund.AssetImageUrl = fundLog.AssetImageUrl;
+                logFund.AssetsClass = fundLog.AssetsClass;
+                logFund.Description = fundLog.Description;
+                logFund.InvestmentAmount = fundLog.InvestmentAmount;
+                logFund.TransactionPerformDate = fundLog.TransactionPerformDate;
+                logFund.TransactionPerformedBy = fundLog.TransactionPerformBy;
+
+                dbContext.InvestmentFundLogs.Update(logFund);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

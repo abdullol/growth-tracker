@@ -8,11 +8,13 @@
 * yearly wise investment calculator 
 * plan your monthly financial plan/budge
 * Asset Classes/Ideas (cloud kitchen, fast food restaurant etc) (with yes/no field)
-* personal property bought/rentals manager
+* personal property bought/rentals manager (checks which property rent payed which not)
 * birthday reminder whatsapp utility
 * Error Monitoring Console with logs for Backend and Frontend
 * Real time data update in local storage to store entered data 
 * Intro via highlighting various parts of UI when application starts.
+* wealth predictor of 10 years (if one kept doing investment with this pace, how much fund in next 10 years)
+
 
 
 Investment_fund_logs

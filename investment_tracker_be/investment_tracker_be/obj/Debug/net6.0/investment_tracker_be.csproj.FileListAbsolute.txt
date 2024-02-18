@@ -64,3 +64,4 @@ D:\WORK\Investment_Tracker\investment_tracker_be\investment_tracker_be\bin\Debug
 D:\WORK\Investment_Tracker\investment_tracker_be\investment_tracker_be\bin\Debug\net6.0\System.Web.Http.dll
 D:\WORK\Investment_Tracker\investment_tracker_be\investment_tracker_be\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\WORK\Investment_Tracker\investment_tracker_be\investment_tracker_be\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\WORK\Investment_Tracker\investment_tracker_be\investment_tracker_be\bin\Debug\net6.0\SolrNet.dll
