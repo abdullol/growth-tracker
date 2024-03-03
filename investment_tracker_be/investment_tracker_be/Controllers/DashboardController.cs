@@ -25,8 +25,24 @@ namespace investment_tracker_be.Controllers
         [Route("PostLogEntry")]
         public async Task<ActionResult> PostLogEntry([FromBody] InvestmentFundLogsVM fundLog)
         {
-            await _dashbService.LogEntryAsync(fundLog);
-            return Ok();
+            ResponseViewModel<object> resp = new ResponseViewModel<object>();
+            try
+            {
+                await _dashbService.LogEntryAsync(fundLog);
+
+                resp.Data = null;
+                resp.StatusCode = (int)HttpStatusCode.OK;
+                resp.Message = "Log entry posted successfully";
+                _logger.LogInformation("Log entry posted successfully");
+                return Ok(resp);
+            }
+            catch (Exception ex)
+            {
+                resp.StatusCode = (int)HttpStatusCode.InternalServerError;
+                resp.Message = $"Error post log entry: {ex.Message}";
+                _logger.LogError(ex, "Error posting entry.");
+                return BadRequest(resp);
+            }
         }
 
         [HttpGet]
@@ -38,9 +54,9 @@ namespace investment_tracker_be.Controllers
             try
             {
                 resp.Data = await _dashbService.FetchLogEntryAsync();
+                
                 resp.StatusCode = (int)HttpStatusCode.OK;
-                resp.Message = "Log Entry Lst fetched";
-
+                resp.Message = "Log entry fetched successfully";
                 _logger.LogInformation("Log entry fetched successfully");
                 return Ok(resp);
             }

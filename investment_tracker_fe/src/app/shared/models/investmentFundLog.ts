@@ -1,7 +1,7 @@
 import { trackerLookup } from "./trackerLookup";
 
 export interface InvestmentFundLog {
-    Id: number;
+    logId: number;
     assetsClass: string;
     investmentAmount: number | null;
     transactionPerformDate: string;
@@ -11,6 +11,4 @@ export interface InvestmentFundLog {
     description: string | null;
     location: string | null;
     transactionPerformedBy: string;
-    currency: trackerLookup;
-    status: trackerLookup;
 }

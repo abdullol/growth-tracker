@@ -1,7 +1,6 @@
 ﻿using investment_tracker_be.Models;
 using investment_tracker_be.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace investment_tracker_be.Services.DashboardService
 {
@@ -48,8 +47,17 @@ namespace investment_tracker_be.Services.DashboardService
             try
             {
                 InvestmentFundLog dbLogObj = new InvestmentFundLog();
-                dbLogObj.StatusId = fundLog.StatusId;
+
                 dbLogObj.CurrencyId = fundLog.CurrencyId;
+                dbLogObj.StatusId = fundLog.StatusId;
+                dbLogObj.Location = fundLog.Location;
+                dbLogObj.AssetImageUrl = fundLog.AssetImageUrl;
+                dbLogObj.AssetsClass = fundLog.AssetsClass;
+                dbLogObj.Description = fundLog.Description;
+                dbLogObj.InvestmentAmount = fundLog.InvestmentAmount;
+                dbLogObj.TransactionPerformDate = fundLog.TransactionPerformDate;
+                dbLogObj.TransactionPerformedBy = fundLog.TransactionPerformBy;
+
                 await dbContext.InvestmentFundLogs.AddAsync(dbLogObj);
                 await dbContext.SaveChangesAsync();
             }

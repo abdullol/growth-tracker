@@ -14,8 +14,6 @@ namespace investment_tracker_be.ViewModels
         public string Description { get; set; }
         public string Location { get; set; }
         public string TransactionPerformBy { get; set; }
-        public TransactionStatus Status { get; set; }
-        public CurrencyType Currency { get; set; }
 
     }
 }

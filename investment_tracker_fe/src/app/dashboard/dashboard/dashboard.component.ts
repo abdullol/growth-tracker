@@ -17,25 +17,35 @@ export class DashboardComponent implements OnInit {
     this.myDateValue = new Date();
 
     this.form =  this.fb.group({
-      assetsClass: '',
-      investmentAmount: 0,
-      transactionPerformDate: '',
-      assetImageUrl: '',
-      statusId: 0,
-      currencyId: 0,
-      description: '',
-      location: '',
-      transactionPerformedBy: '',
-      currency: {},
-      status: {},
+      "id": 0,
+      "assetsClass": "",
+      "investmentAmount": 0,
+      "transactionPerformDate": "",
+      "assetImageUrl": "",
+      "currencyId": 0,
+      "statusId": 0,
+      "description": "",
+      "location": "",
+      "transactionPerformBy": ""
     })
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadTableData();
   }
 
-  saveEntry(){
-    this.dashboardService.saveInvestmentEntry(this.form.value)
+  async saveEntry(){
+    var resp = (await this.dashboardService.saveInvestmentEntry(this.form.value)).toPromise();
+    console.log('saveEntry', resp);
+  }
+
+  async loadTableData(){
+    try {
+      var resp = (await this.dashboardService.getLogEnteries());
+      console.log('loadTableData', resp);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
