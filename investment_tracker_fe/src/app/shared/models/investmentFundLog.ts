@@ -10,5 +10,5 @@ export interface InvestmentFundLog {
     currencyId: number;
     description: string | null;
     location: string | null;
-    transactionPerformedBy: string;
+    transactionPerformBy: string;
 }

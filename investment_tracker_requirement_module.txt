@@ -15,6 +15,7 @@
 * Intro via highlighting various parts of UI when application starts.
 * wealth predictor of 10 years (if one kept doing investment with this pace, how much fund in next 10 years)
 * Child growth tracker module 
+* show/hide stats
 
 
 
