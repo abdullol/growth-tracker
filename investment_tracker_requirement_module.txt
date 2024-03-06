@@ -3,6 +3,9 @@
 * Client display micro-frontend page 
 * dashboard of investments 
    - Clone the last Investment log entry
+   - pagination
+   - calculated stats for dashboard
+   - interceptors for API calls
 * daily expense module with graphs and filters
 * crypto transaction-wise record for usdt and pkr
 * yearly wise investment calculator 

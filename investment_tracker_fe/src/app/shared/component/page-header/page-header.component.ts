@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { DataInteractionServiceService } from 'src/app/core/services/data-interaction-service.service';
 
 @Component({
   selector: 'app-page-header',
@@ -18,14 +19,16 @@ export class PageHeaderComponent {
   @Input() icon;
   @Input() modaltype;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal,
+    private ddiService: DataInteractionServiceService) {
     console.log(this.modaltype);
   }
 
   openDialog() {
-    this.modalService.open(this.modaltype, {
+    var modalReference = this.modalService.open(this.modaltype, {
       size: 'lg'
     });
+    this.ddiService.setModalRef(modalReference);
   }
 
 }

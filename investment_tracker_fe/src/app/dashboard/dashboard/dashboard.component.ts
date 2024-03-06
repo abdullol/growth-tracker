@@ -9,11 +9,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { DashboardService } from 'src/app/core/http/dashboard/dashboard.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoaderComponent } from 'src/app/shared/component/loader/loader.component';
 import { LoaderService } from 'src/app/shared/utilities/loader.service';
 import { InvestmentFundLog } from 'src/app/shared/models/investmentFundLog';
 import { ResponseViewModel } from 'src/app/shared/models/responseViewModel';
 import { HttpStatusCodes } from 'src/app/shared/enums/HttpStatusCodes.enum';
+import { DataInteractionServiceService } from 'src/app/core/services/data-interaction-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +27,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private fb: FormBuilder,
-    private ldrService: LoaderService
+    private ldrService: LoaderService,
+    private ddiService: DataInteractionServiceService
   ) {
     this.myDateValue = new Date();
 
@@ -59,8 +60,10 @@ export class DashboardComponent implements OnInit {
         (resp as ResponseViewModel<InvestmentFundLog[]>).statusCode ===
           HttpStatusCodes.OK
       ) {
-        this.ldrService.hideLoader();
         await this.loadTableData();
+        this.ldrService.hideLoader();
+        this.ddiService.closeModal();
+        this.form.reset();
       }
     } catch (error) {
       console.log(error);
@@ -77,8 +80,8 @@ export class DashboardComponent implements OnInit {
         await this.dashboardService.getLogEnteries();
       if (resp && (resp as ResponseViewModel<InvestmentFundLog[]>).data) {
         this.logEnteriesLst = resp.data;
+        this.ldrService.hideLoader();
       }
-      this.ldrService.hideLoader();
     } catch (error) {
       console.log(error);
     }
