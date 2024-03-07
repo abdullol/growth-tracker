@@ -18,6 +18,8 @@
 * show/hide stats
 * to do List / Tasker 
 * dynamically update dashboard stats when every there is any update/delete/add
+* Books read Tracker
+* yearly Resolution Tracker
 
 
 
