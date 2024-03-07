@@ -16,6 +16,8 @@
 * wealth predictor of 10 years (if one kept doing investment with this pace, how much fund in next 10 years)
 * Child growth tracker module 
 * show/hide stats
+* to do List / Tasker 
+* dynamically update dashboard stats when every there is any update/delete/add
 
 
 
