@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
   myDateValue: Date;
   form: FormGroup;
   logEnteriesLst: InvestmentFundLog[] = [];
+  page2 = 5;
+
   constructor(
     private dashboardService: DashboardService,
     private fb: FormBuilder,
