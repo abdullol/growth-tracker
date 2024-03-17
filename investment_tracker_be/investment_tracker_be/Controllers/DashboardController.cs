@@ -44,17 +44,17 @@ namespace investment_tracker_be.Controllers
                 return BadRequest(resp);
             }
         }
-
         [HttpGet]
         [Route("GetLogEntry")]
-        public async Task<ActionResult> GetLogEntry()
+        public async Task<ActionResult> GetLogEntry([FromQuery] PaginationFilter pagination)
         {
             ResponseViewModel<object> resp = new ResponseViewModel<object>();
 
             try
             {
-                resp.Data = await _dashbService.FetchLogEntryAsync();
-                
+                //var validFilter = new PaginationFilter();
+                resp.Data = await _dashbService.FetchLogEntryAsync(pagination);
+                resp.TotalRecords = await _dashbService.CountDbLogs();
                 resp.StatusCode = (int)HttpStatusCode.OK;
                 resp.Message = "Log entry fetched successfully";
                 _logger.LogInformation("Log entry fetched successfully");

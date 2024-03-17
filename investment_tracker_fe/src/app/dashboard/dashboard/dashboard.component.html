@@ -260,6 +260,19 @@
           </td>
         </tr>
       </tbody>
+      <tfoot>
+        <!-- Table footer for pagination -->
+        <tr>
+            <td colspan="9" class="text-center">
+              <div class="d-flex justify-content-center">
+                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" 
+                (pageChange)="getPremiumData($event);">
+                </ngb-pagination>
+              </div>
+            </td>
+        </tr>
+    </tfoot>
+    
     </table>
   </div>
   <div class="d-block p-4 text-center card-footer">

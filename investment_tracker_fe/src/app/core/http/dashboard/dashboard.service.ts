@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { error } from '@angular/compiler/src/util';
 import { InvestmentFundLog } from 'src/app/shared/models/investmentFundLog';
 import { ResponseViewModel } from 'src/app/shared/models/responseViewModel';
+import { PaginationFilter } from 'src/app/shared/models/paginationFilter';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,10 +20,14 @@ export class DashboardService {
     return resp;
   }
 
-  async getLogEnteries():Promise<ResponseViewModel<InvestmentFundLog[]>> {
+  async getLogEnteries(pagination: PaginationFilter):Promise<ResponseViewModel<InvestmentFundLog[]>> {
     try {
-      const res = await this.http.get<ResponseViewModel<InvestmentFundLog[]>>(this.logEntriesEndpoint).toPromise();
-      return res;
+      console.log('paginatin: ', pagination);
+      const payload = {
+        PageSize: pagination.PageSize.toString(),
+        PageNumber: pagination.PageNumber.toString()
+      }
+      return await this.http.get<ResponseViewModel<InvestmentFundLog[]>>(this.logEntriesEndpoint, { params: payload } ).toPromise();
     } catch (error) {
       console.error('Error fetching log entries:', error);
       throw error; // Rethrow the error to propagate it to the caller

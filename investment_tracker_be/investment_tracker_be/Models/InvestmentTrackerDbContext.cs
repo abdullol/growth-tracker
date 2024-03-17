@@ -37,9 +37,7 @@ namespace investment_tracker_be.Models
 
                 entity.ToTable("investmentFundLogs");
 
-                entity.Property(e => e.LogId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("logId");
+                entity.Property(e => e.LogId).HasColumnName("logId");
 
                 entity.Property(e => e.AssetImageUrl).HasColumnName("assetImageUrl");
 
@@ -90,9 +88,7 @@ namespace investment_tracker_be.Models
 
                 entity.ToTable("trackerLookups");
 
-                entity.Property(e => e.LookupId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("lookupId");
+                entity.Property(e => e.LookupId).HasColumnName("lookupId");
 
                 entity.Property(e => e.Createddate)
                     .HasColumnType("datetime")
