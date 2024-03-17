@@ -1,5 +1,6 @@
 ﻿using investment_tracker_be.Models;
 using investment_tracker_be.ViewModels;
+using investment_tracker_be.ViewModels.Shared;
 using Microsoft.EntityFrameworkCore;
 
 namespace investment_tracker_be.Services.DashboardService
@@ -10,6 +11,11 @@ namespace investment_tracker_be.Services.DashboardService
         public DashboardService(InvestmentTrackerDbContext _dbContext)
         {
             dbContext = _dbContext;
+        }
+
+        public Task<int> CountDbLogs()
+        {
+            return dbContext.InvestmentFundLogs.CountAsync();
         }
 
         public async Task DeleteLogEntryRow(int id)
@@ -30,11 +36,15 @@ namespace investment_tracker_be.Services.DashboardService
             }
         }
 
-        public async Task<List<InvestmentFundLog>> FetchLogEntryAsync()
+        public async Task<List<InvestmentFundLog>> FetchLogEntryAsync(PaginationFilter pagination)
         {
             try
             {
-                return await dbContext.InvestmentFundLogs.ToListAsync();
+                return await dbContext.InvestmentFundLogs.
+                    Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                    .Take(pagination.PageSize)
+                    .ToListAsync();
+
             }
             catch (Exception ex)
             {

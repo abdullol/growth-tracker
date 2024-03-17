@@ -3,12 +3,10 @@
 * Client display micro-frontend page 
 * dashboard of investments 
    - Clone the last Investment log entry
-   - pagination
+   - server side pagination
    - calculated stats for dashboard
    - interceptors for API calls
-* daily expense module with graphs and filters
-* crypto transaction-wise record for usdt and pkr
-* yearly wise investment calculator 
+   - Search & filter on Fund Logs 
 * plan your monthly financial plan/budge (following excel sheet)
 * Asset Classes/Ideas (cloud kitchen, fast food restaurant etc) (with yes/no field)
 * personal property bought/rentals manager (checks which property rent payed which not)

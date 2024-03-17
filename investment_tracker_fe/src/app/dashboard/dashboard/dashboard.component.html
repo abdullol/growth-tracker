@@ -265,7 +265,9 @@
         <tr>
             <td colspan="9" class="text-center">
               <div class="d-flex justify-content-center">
-                <ngb-pagination [collectionSize]="100" [(page)]="page2" [pageSize]="100" [maxSize]="100" [boundaryLinks]="true"></ngb-pagination>
+                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" 
+                (pageChange)="getPremiumData($event);">
+                </ngb-pagination>
               </div>
             </td>
         </tr>

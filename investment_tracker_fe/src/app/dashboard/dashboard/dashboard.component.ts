@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/shared/utilities/loader.service';
 import { InvestmentFundLog } from 'src/app/shared/models/investmentFundLog';
 import { ResponseViewModel } from 'src/app/shared/models/responseViewModel';
+import { PaginationFilter } from 'src/app/shared/models/paginationFilter';
 import { HttpStatusCodes } from 'src/app/shared/enums/HttpStatusCodes.enum';
 import { DataInteractionServiceService } from 'src/app/core/services/data-interaction-service.service';
 
@@ -24,8 +25,13 @@ export class DashboardComponent implements OnInit {
   myDateValue: Date;
   form: FormGroup;
   logEnteriesLst: InvestmentFundLog[] = [];
-  page2 = 5;
-
+  page = 1;
+  pageSize = 5;
+  paginate: PaginationFilter = {
+    PageSize: 5,
+    PageNumber: 1
+  };
+  totalRecords: number;
   constructor(
     private dashboardService: DashboardService,
     private fb: FormBuilder,
@@ -49,7 +55,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.loadTableData();
+    await this.loadTableData(this.paginate);
   }
 
   async saveEntry() {
@@ -62,7 +68,7 @@ export class DashboardComponent implements OnInit {
         (resp as ResponseViewModel<InvestmentFundLog[]>).statusCode ===
           HttpStatusCodes.OK
       ) {
-        await this.loadTableData();
+        await this.loadTableData(this.paginate);
         this.ldrService.hideLoader();
         this.ddiService.closeModal();
         this.form.reset();
@@ -74,20 +80,31 @@ export class DashboardComponent implements OnInit {
     console.log('saveEntry', resp);
   }
 
-  async loadTableData() {
+  async loadTableData(paginate) {
     this.ldrService.showLoader();
     try {
       this.logEnteriesLst = new Array<InvestmentFundLog>();
       var resp: ResponseViewModel<InvestmentFundLog[]> =
-        await this.dashboardService.getLogEnteries();
+        await this.dashboardService.getLogEnteries(paginate);
       if (resp && (resp as ResponseViewModel<InvestmentFundLog[]>).data) {
+        this.resetVariables();
         this.logEnteriesLst = resp.data;
+        this.totalRecords = resp.totalRecords;
         this.ldrService.hideLoader();
       }
     } catch (error) {
       console.log(error);
     }
   }
+
+  async getPremiumData(event){
+    console.log(event);
+    this.paginate = {
+      PageSize: 5,
+      PageNumber: Number(event)
+    }
+    await this.loadTableData(this.paginate)
+   }
 
   // =======================
 
@@ -255,4 +272,8 @@ export class DashboardComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
   };
+
+  private resetVariables() {
+    this.logEnteriesLst = [];
+  }
 }
