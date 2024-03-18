@@ -65,13 +65,13 @@ namespace investment_tracker_be.Controllers
                 resp.StatusCode = (int)HttpStatusCode.InternalServerError;
                 resp.Message = $"Error fetch log entry: {ex.Message}";
                 _logger.LogError(ex, "Error fetching entry.");
-                return Ok(resp);
+                return BadRequest(resp);
             }
         }
 
         [HttpDelete]
-        [Route("DeleteLogEntry")]
-        public async void DeleteLogEntry(int Id)
+        [Route("DeleteLogEntry/{id}")]
+        public async Task<ActionResult> DeleteLogEntry(int Id)
         {
             ResponseViewModel<object> resp = new ResponseViewModel<object>();
             try
@@ -80,12 +80,14 @@ namespace investment_tracker_be.Controllers
                 resp.StatusCode = (int)HttpStatusCode.OK;
                 resp.Message = "Log Entry Row has been deleted successfully.";
                 _logger.LogInformation("Log Entry Row has been deleted successfully.");
+                return Ok(resp);
             }
             catch (Exception ex)
             {
                 resp.StatusCode = (int)HttpStatusCode.InternalServerError;
                 resp.Message = "Error while deleting Log Entry row.";
                 _logger.LogError(ex, "Error while deleting Log Entry row.");
+                return BadRequest(resp);
             }
         }
 

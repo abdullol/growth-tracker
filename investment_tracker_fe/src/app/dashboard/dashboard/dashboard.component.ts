@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
       statusId: 0,
       description: '',
       location: '',
-      transactionPerformBy : ''
+      transactionPerformedBy : ''
     });
   }
 
@@ -63,21 +63,23 @@ export class DashboardComponent implements OnInit {
     try {
       var resp: ResponseViewModel<InvestmentFundLog[]> =
         await this.dashboardService.saveInvestmentEntry(this.form.value);
-      if (
-        resp &&
-        (resp as ResponseViewModel<InvestmentFundLog[]>).statusCode ===
-          HttpStatusCodes.OK
-      ) {
-        await this.loadTableData(this.paginate);
-        this.ldrService.hideLoader();
-        this.ddiService.closeModal();
-        this.form.reset();
-      }
+        await this.handleOperationResponse(resp);
     } catch (error) {
       console.log(error);
     }
 
     console.log('saveEntry', resp);
+  }
+
+  private async handleOperationResponse(resp: ResponseViewModel<InvestmentFundLog[]>) {
+    if (resp &&
+      (resp as ResponseViewModel<InvestmentFundLog[]>).statusCode ===
+      HttpStatusCodes.OK) {
+      await this.loadTableData(this.paginate);
+      this.ldrService.hideLoader();
+      this.ddiService.closeModal();
+      this.form.reset();
+    }
   }
 
   async loadTableData(paginate) {
@@ -105,6 +107,17 @@ export class DashboardComponent implements OnInit {
     }
     await this.loadTableData(this.paginate)
    }
+
+  async deleteLogEntry(val: InvestmentFundLog){
+    try {
+      this.ldrService.showLoader()
+      var resp = await this.dashboardService.deleteLogEntryAPI(val.logId);
+      await this.handleOperationResponse(resp);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // =======================
 
