@@ -23,10 +23,14 @@
 * wealth predictor of 10 years (if one kept doing investment with this pace, how much fund in next 10 years)
 * Child growth tracker module 
 * show/hide stats
-* To do list application
 * Authentication & Authorisation on specific modules (login/register)
 * Save & Sign Functionality
 * we can make timeline in which we have descrptions of each log on dash 
+* to do List / Tasker 
+* dynamically update dashboard stats when every there is any update/delete/add
+* Books read Tracker
+* yearly Resolution Tracker
+
 
 
 
