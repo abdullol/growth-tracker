@@ -9,9 +9,11 @@ import { PaginationFilter } from 'src/app/shared/models/paginationFilter';
   providedIn: 'root',
 })
 export class DashboardService {
+
   apiUrl: string = environment.apiUrl + 'api/Dashboard';
   saveActionEndpoint: string = `${this.apiUrl}/PostLogEntry`;
   logEntriesEndpoint: string = `${this.apiUrl}/GetLogEntry`;
+  deleteEnteriesEndpoint: string = `${this.apiUrl}/DeleteLogEntry`;
 
   constructor(private http: HttpClient) {}
 
@@ -22,12 +24,21 @@ export class DashboardService {
 
   async getLogEnteries(pagination: PaginationFilter):Promise<ResponseViewModel<InvestmentFundLog[]>> {
     try {
-      console.log('paginatin: ', pagination);
       const payload = {
         PageSize: pagination.PageSize.toString(),
         PageNumber: pagination.PageNumber.toString()
       }
       return await this.http.get<ResponseViewModel<InvestmentFundLog[]>>(this.logEntriesEndpoint, { params: payload } ).toPromise();
+    } catch (error) {
+      console.error('Error fetching log entries:', error);
+      throw error; // Rethrow the error to propagate it to the caller
+    }
+  }
+
+  async deleteLogEntryAPI(id: number):Promise<ResponseViewModel<InvestmentFundLog[]>>  {
+    try {
+      var resp = await this.http.delete<ResponseViewModel<InvestmentFundLog[]>>(`${this.deleteEnteriesEndpoint}/${id}`).toPromise();
+      return resp;
     } catch (error) {
       console.error('Error fetching log entries:', error);
       throw error; // Rethrow the error to propagate it to the caller

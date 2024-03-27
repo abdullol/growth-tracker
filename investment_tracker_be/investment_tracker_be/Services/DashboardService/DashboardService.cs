@@ -22,18 +22,23 @@ namespace investment_tracker_be.Services.DashboardService
         {
             try
             {
-                var logFound = await dbContext.InvestmentFundLogs.FindAsync(id);
-
-                if (logFound != null)
+                using (var dbContext = new InvestmentTrackerDbContext())
                 {
-                    dbContext.InvestmentFundLogs.Remove(logFound);
-                    await dbContext.SaveChangesAsync();
+                    var logFound = await dbContext.InvestmentFundLogs.FindAsync(id);
+
+                    if (logFound != null)
+                    {
+                        dbContext.InvestmentFundLogs.Remove(logFound);
+                        await dbContext.SaveChangesAsync();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                // Handle exceptions appropriately
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
+
         }
 
         public async Task<List<InvestmentFundLog>> FetchLogEntryAsync(PaginationFilter pagination)
@@ -66,7 +71,7 @@ namespace investment_tracker_be.Services.DashboardService
                 dbLogObj.Description = fundLog.Description;
                 dbLogObj.InvestmentAmount = fundLog.InvestmentAmount;
                 dbLogObj.TransactionPerformDate = fundLog.TransactionPerformDate;
-                dbLogObj.TransactionPerformedBy = fundLog.TransactionPerformBy;
+                dbLogObj.TransactionPerformedBy = fundLog.TransactionPerformedBy;
 
                 await dbContext.InvestmentFundLogs.AddAsync(dbLogObj);
                 await dbContext.SaveChangesAsync();
@@ -95,7 +100,7 @@ namespace investment_tracker_be.Services.DashboardService
                 logFund.Description = fundLog.Description;
                 logFund.InvestmentAmount = fundLog.InvestmentAmount;
                 logFund.TransactionPerformDate = fundLog.TransactionPerformDate;
-                logFund.TransactionPerformedBy = fundLog.TransactionPerformBy;
+                logFund.TransactionPerformedBy = fundLog.TransactionPerformedBy;
 
                 dbContext.InvestmentFundLogs.Update(logFund);
 

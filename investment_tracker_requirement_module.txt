@@ -1,12 +1,18 @@
  === >> GROWTH
-* My Professional Portflio Page
-* Client display micro-frontend page 
+* My Professional Portflio Page (links to professional social media/website/Projects)
 * dashboard of investments 
-   - Clone the last Investment log entry
-   - server side pagination
+   - Clone the last Investment log entry (Edit & Delete) add relative dialog when delete/edit
+   - server side pagination - done
    - calculated stats for dashboard
    - interceptors for API calls
-   - Search & filter on Fund Logs 
+   - Guards for navigation (if unsaved data)
+   - Date filter on Fund Logs 
+   - Asset Class wise filter
+   - define  CSS classes  to maintain styling same through out application
+   - apply Server side and client side validations on Dialog box and other areas
+
+ 
+* Client display micro-frontend page so each module can be treated as separate application
 * plan your monthly financial plan/budge (following excel sheet)
 * Asset Classes/Ideas (cloud kitchen, fast food restaurant etc) (with yes/no field)
 * personal property bought/rentals manager (checks which property rent payed which not)
@@ -17,10 +23,14 @@
 * wealth predictor of 10 years (if one kept doing investment with this pace, how much fund in next 10 years)
 * Child growth tracker module 
 * show/hide stats
+* Authentication & Authorisation on specific modules (login/register)
+* Save & Sign Functionality
+* we can make timeline in which we have descrptions of each log on dash 
 * to do List / Tasker 
 * dynamically update dashboard stats when every there is any update/delete/add
 * Books read Tracker
 * yearly Resolution Tracker
+
 
 
 

@@ -1,4 +1,3 @@
-<!-- dialog to add investment logs -->
 <ng-template #content6 let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Investment Log Entry</h4>
@@ -17,8 +16,8 @@
         <div class="col-md-6">
           <div class="position-relative mb-3">
             <label for="investmentAmount">Investment Amount</label>
-            <input type="number" class="mb-2 form-control" id="investmentAmount"
-              name="investmentAmount" formControlName="investmentAmount">
+            <input type="number" class="mb-2 form-control" id="investmentAmount" name="investmentAmount"
+              formControlName="investmentAmount">
           </div>
         </div>
       </div>
@@ -28,14 +27,8 @@
         <div class="form-group col-md-6">
           <div class="position-relative mb-3">
             <label for="transactionPerformDate">Transaction Perform Date</label>
-            <input
-              type="date"
-              class="form-control"
-              id="transactionPerformDate"
-              placeholder="Transaction Perform Date"
-              name="transactionPerformDate"
-              formControlName="transactionPerformDate"
-            />
+            <input type="date" class="form-control" id="transactionPerformDate" placeholder="Transaction Perform Date"
+              name="transactionPerformDate" formControlName="transactionPerformDate" />
           </div>
         </div>
 
@@ -44,7 +37,7 @@
           <div class="position-relative mb-3">
             <label for="assetImageUrl">Asset Image URL</label>
             <input type="file" class="form-control" id="assetImageUrl" name="assetImageUrl"
-            formControlName="assetImageUrl">
+              formControlName="assetImageUrl">
           </div>
         </div>
       </div>
@@ -81,10 +74,9 @@
         <!-- TransactionPerformedBy -->
         <div class="form-group col-md-6">
           <div class="position-relative mb-3">
-            <label for="transactionPerformBy">Transaction Performed By</label>
-            <input type="text" class="form-control" id="transactionPerformBy" 
-            formControlName="transactionPerformBy"
-              name="transactionPerformBy">
+            <label for="transactionPerformedBy">Transaction Performed By</label>
+            <input type="text" class="form-control" id="transactionPerformedBy" formControlName="transactionPerformedBy"
+              name="transactionPerformedBy">
           </div>
         </div>
 
@@ -92,8 +84,7 @@
         <div class="form-group col-md-6">
           <div class="position-relative mb-3">
             <label for="location">Location</label>
-            <input type="text" class="form-control" id="location"
-             formControlName="location" name="location">
+            <input type="text" class="form-control" id="location" formControlName="location" name="location">
           </div>
         </div>
       </div>
@@ -112,11 +103,14 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-    <button type="button" class="btn btn-primary" (click)="saveEntry()" >Save changes</button>
+    <button type="button" class="btn btn-primary" style="background-color: #008080;" (click)="saveEntry()">Save changes</button>
   </div>
 </ng-template>
 
-<app-page-header [heading]="heading" [subheading]="subheading" [icon]="icon" [modaltype]="content6"></app-page-header>
+<!-- dialog to add investment logs -->
+<app-page-header [heading]="heading" [subheading]="subheading" [icon]="icon"
+[modaltype]="content6"
+></app-page-header>
 
 <div class="mb-3 card">
   <div class="card-header-tab card-header">
@@ -204,58 +198,39 @@
     <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
       <thead>
         <tr>
-          <th class="text-center">#</th>
-          <th class="text-center">Avatar</th>
-          <th class="text-center">Asset Class</th>
-          <th class="text-center">Investment Amount</th>
-          <th class="text-center">Status</th>
-          <th class="text-center">Currency</th>
-          <th class="text-center">T Performed By</th>
-          <th class="text-center">T Performed Date</th>
-          <th class="text-center">Action</th>
+          <th class="widget-subheading text-center">Avatar</th>
+          <th class="widget-subheading text-center">Asset Class</th>
+          <th class="widget-subheading text-center">Investment Amount</th>
+          <th class="widget-subheading text-center">Status</th>
+          <th class="widget-subheading text-center">Currency</th>
+          <th class="widget-subheading text-center">T Performed By</th>
+          <th class="widget-subheading text-center">T Performed Date</th>
+          <th class="widget-subheading text-center">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of this.logEnteriesLst; let i=index">
-          <td id="index-{{i}}" class="text-center text-muted" style="width: 80px;">{{i}}</td>
           <td id="avatar-{{i}}" class="text-center" style="width: 80px;">
             <img width="40" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt="">
           </td>
-          <td id="assetClass-{{i}}" class="text-center"><a>{{item.assetsClass}}</a></td>
-          <td id="invstmntAmnt-{{i}}" class="text-center"><a>{{item.investmentAmount}}</a></td>
-          <td  id="status-{{i}}" class="text-center">
-            <div class="badge rounded-pill bg-danger">{{item.status}}</div>
-          </td>
-          <td id="currncy-{{i}}" class="text-center">
-            {{item.currency}}
-          </td>
-          <td id="prfmedby-{{i}}" class="text-center" style="width: 200px;">
-            <div class="widget-content p-0">
-              <div class="widget-content-outer">
-                <div class="widget-content-wrapper">
-                  <div class="widget-content-left pe-2">
-                    <div class="widget-numbers fsize-1 text-danger">{{item.transactionPerformedBy}}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td  id="prfrmedDat-{{i}}" class="text-center" style="width: 200px;">
-            <div class="widget-content p-0">
-              <div class="widget-content-outer">
-                <div class="widget-content-wrapper">
-                  <div class="widget-content-left pe-2">
-                    <div class="widget-numbers fsize-1 text-danger">{{item.transactionPerformDate | date:'yyyy-MM-dd' }}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </td>
+          <td id="assetClass-{{i}}" class="text-center">{{item.assetsClass}}</td>
+          <td id="invstmntAmnt-{{i}}" class="text-center">{{item.investmentAmount}}</td>
+          <td id="status-{{i}}" class="text-center">{{item.status}}</td>
+          <td id="currncy-{{i}}" class="text-center">{{item.currency}}</td>
+          <td id="prfmedby-{{i}}" class="text-center" style="width: 200px;">{{item.transactionPerformedBy}}</td>
+          <td id="prfrmedDat-{{i}}" class="text-center" style="width: 200px;">{{item.transactionPerformDate |
+            date:'yyyy-MM-dd' }}</td>
           <td class="text-center">
             <div role="group" class="btn-group-sm btn-group">
-              <button class="btn-shadow btn btn-success">Clone</button>
-              <button class="btn-shadow btn btn-primary">Edit</button>
-              <button class="btn-shadow btn btn-danger">Fire</button>
+              <button class="btn-shadow btn btn-primary btn-circle" style="background-color: #008080;">
+                <span class="material-symbols-outlined" style="font-size: 1.5em;">control_point_duplicate</span>
+              </button>
+              <button class="btn-shadow btn btn-primary btn-circle" style="background-color: #87CEEB;">
+                <span class="material-symbols-outlined" style="font-size: 1.5em;" (click)="editLogEntry(item)">edit_square</span>
+              </button>
+              <button class="btn-shadow btn btn-primary btn-circle" style="background-color: #555555;">
+                <span class="material-symbols-outlined" style="font-size: 1.5em;" (click)="deleteLogEntry(item)">layers_clear</span>
+              </button>
             </div>
           </td>
         </tr>
@@ -263,17 +238,17 @@
       <tfoot>
         <!-- Table footer for pagination -->
         <tr>
-            <td colspan="9" class="text-center">
-              <div class="d-flex justify-content-center">
-                <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize" 
+          <td colspan="8" class="text-center">
+            <div class="d-flex justify-content-center">
+              <ngb-pagination [collectionSize]="totalRecords" [(page)]="page" [pageSize]="pageSize"
                 (pageChange)="getPremiumData($event);">
-                </ngb-pagination>
-              </div>
-            </td>
+              </ngb-pagination>
+            </div>
+          </td>
         </tr>
-    </tfoot>
-    
+      </tfoot>
     </table>
+
   </div>
   <div class="d-block p-4 text-center card-footer">
     <button class="btn-pill btn-shadow btn-wide fsize-1 btn btn-dark btn-lg">
@@ -1027,4 +1002,3 @@
     </div>
   </div>
 </div>
-

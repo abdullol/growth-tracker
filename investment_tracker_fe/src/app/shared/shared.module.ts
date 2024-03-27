@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PageHeaderComponent } from './component/page-header/page-header.component';
 import { LoaderComponent } from './component/loader/loader.component';
-import { HttpStatusCodes } from './enums/HttpStatusCodes.enum';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
   ],
   declarations: [

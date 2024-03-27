@@ -1,1 +1,18 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.btn-circle {
+    border-radius: 80px; /* Make the button circular */
+    width: 30px; /* Set the width of the button */
+    height: 30px; /* Set the height of the button */
+    color: white; /* Set the text color */
+    border: none; /* Remove border */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    transition: transform 0.3s ease; /* Add a transition for hover effect */
+    overflow: hidden; /* Ensure content within the button stays within the circle */
+  }
+
+  .btn-circle:hover {
+    transform: scale(1.1); /* Scale the button on hover */
+  }

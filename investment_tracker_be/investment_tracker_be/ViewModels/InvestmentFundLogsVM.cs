@@ -11,9 +11,9 @@ namespace investment_tracker_be.ViewModels
         public string AssetImageUrl { get; set; }
         public int CurrencyId { get; set; }
         public int StatusId { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public string Location { get; set; }
-        public string TransactionPerformBy { get; set; }
+        public string TransactionPerformedBy { get; set; }
 
     }
 }
