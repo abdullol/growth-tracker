@@ -15,6 +15,7 @@ import { ResponseViewModel } from 'src/app/shared/models/responseViewModel';
 import { PaginationFilter } from 'src/app/shared/models/paginationFilter';
 import { HttpStatusCodes } from 'src/app/shared/enums/HttpStatusCodes.enum';
 import { DataInteractionServiceService } from 'src/app/core/services/data-interaction-service.service';
+import { PageHeaderComponent } from 'src/app/shared/component/page-header/page-header.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +23,9 @@ import { DataInteractionServiceService } from 'src/app/core/services/data-intera
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild(PageHeaderComponent) childCom!: PageHeaderComponent;
+
   myDateValue: Date;
   form: FormGroup;
   logEnteriesLst: InvestmentFundLog[] = [];
@@ -41,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.myDateValue = new Date();
 
     this.form = this.fb.group({
-      id: 0,
+      logId: 0,
       assetsClass: '',
       investmentAmount: 0,
       transactionPerformDate: '',
@@ -50,7 +54,9 @@ export class DashboardComponent implements OnInit {
       statusId: 0,
       description: '',
       location: '',
-      transactionPerformedBy : ''
+      transactionPerformedBy : '',
+      currency: '',
+      status: ''
     });
   }
 
@@ -67,8 +73,6 @@ export class DashboardComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
-
-    console.log('saveEntry', resp);
   }
 
   private async handleOperationResponse(resp: ResponseViewModel<InvestmentFundLog[]>) {
@@ -119,6 +123,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  editLogEntry(val: InvestmentFundLog){
+    console.log(val);
+    this.form.setValue(val);
+    this.childCom.openDialog();
+  }
+
   // =======================
 
   faTh = faTh;
@@ -129,7 +139,7 @@ export class DashboardComponent implements OnInit {
 
   heading = 'Analytics Dashboard';
   subheading =
-    'This is an example dashboard created using build-in elements and components.';
+  "GROWTH personal finance dashboard displays asset classes and time-wise filtered investments."
   icon = 'pe-7s-plane icon-gradient bg-tempting-azure';
 
   slideConfig6 = {

@@ -71,7 +71,7 @@ namespace investment_tracker_be.Services.DashboardService
                 dbLogObj.Description = fundLog.Description;
                 dbLogObj.InvestmentAmount = fundLog.InvestmentAmount;
                 dbLogObj.TransactionPerformDate = fundLog.TransactionPerformDate;
-                dbLogObj.TransactionPerformedBy = fundLog.TransactionPerformBy;
+                dbLogObj.TransactionPerformedBy = fundLog.TransactionPerformedBy;
 
                 await dbContext.InvestmentFundLogs.AddAsync(dbLogObj);
                 await dbContext.SaveChangesAsync();
@@ -100,7 +100,7 @@ namespace investment_tracker_be.Services.DashboardService
                 logFund.Description = fundLog.Description;
                 logFund.InvestmentAmount = fundLog.InvestmentAmount;
                 logFund.TransactionPerformDate = fundLog.TransactionPerformDate;
-                logFund.TransactionPerformedBy = fundLog.TransactionPerformBy;
+                logFund.TransactionPerformedBy = fundLog.TransactionPerformedBy;
 
                 dbContext.InvestmentFundLogs.Update(logFund);
 

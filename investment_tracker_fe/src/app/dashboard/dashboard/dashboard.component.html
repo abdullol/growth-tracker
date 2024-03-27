@@ -1,4 +1,3 @@
-<!-- dialog to add investment logs -->
 <ng-template #content6 let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Investment Log Entry</h4>
@@ -108,7 +107,10 @@
   </div>
 </ng-template>
 
-<app-page-header [heading]="heading" [subheading]="subheading" [icon]="icon" [modaltype]="content6"></app-page-header>
+<!-- dialog to add investment logs -->
+<app-page-header [heading]="heading" [subheading]="subheading" [icon]="icon"
+[modaltype]="content6"
+></app-page-header>
 
 <div class="mb-3 card">
   <div class="card-header-tab card-header">
@@ -224,7 +226,7 @@
                 <span class="material-symbols-outlined" style="font-size: 1.5em;">control_point_duplicate</span>
               </button>
               <button class="btn-shadow btn btn-primary btn-circle" style="background-color: #87CEEB;">
-                <span class="material-symbols-outlined" style="font-size: 1.5em;">edit_square</span>
+                <span class="material-symbols-outlined" style="font-size: 1.5em;" (click)="editLogEntry(item)">edit_square</span>
               </button>
               <button class="btn-shadow btn btn-primary btn-circle" style="background-color: #555555;">
                 <span class="material-symbols-outlined" style="font-size: 1.5em;" (click)="deleteLogEntry(item)">layers_clear</span>
